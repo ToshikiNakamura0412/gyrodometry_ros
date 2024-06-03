@@ -3,7 +3,7 @@
 ![Build Status](https://github.com/ToshikiNakamura0412/gyrodometry_ros/workflows/build/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-ROS implementation of Gyrodometry
+ROS implementation of Gyrodometry for 2D navigation
 
 ## Environment
 - Ubuntu 20.04
@@ -30,10 +30,12 @@ rosrun gyrodometry_ros gyrodometry_node
 ![Node I/O](images/node_io.png)
 
 ## Nodes
-### gyrodometry_node
+### gyrodometry
 #### Published Topics
 - /gyrodom (`nav_msgs/Odometry`)
   - The gyrodometry data
+- /tf (`tf2_msgs/TFMessage`)
+  - tf (from the odom frame to the gyrodom frame)
 
 #### Subscribed Topics
 - /imu (`sensor_msgs/Imu`)
@@ -41,5 +43,10 @@ rosrun gyrodometry_ros gyrodometry_node
 - /odom (`nav_msgs/Odometry`)
   - The odometry data
 
+#### Parameters
+- ~\<name>/<b>child_frame_id</b> (string, default: `gyrodom`):<br>
+  The child frame id of the gyrodometry data
+
 ## References
 - https://lilaboc.work/archives/18464338.html
+- https://github.com/amslabtech/complement
