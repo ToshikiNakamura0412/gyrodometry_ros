@@ -62,10 +62,9 @@ private:
   {
     if (last_odom_.has_value())
     {
-      const double dx = msg->pose.pose.position.x - last_odom_->pose.pose.position.x;
-      const double dy = msg->pose.pose.position.y - last_odom_->pose.pose.position.y;
-      gyrodom_.pose.pose.position.x += hypot(dx, dy) * cos(yaw_);
-      gyrodom_.pose.pose.position.y += hypot(dx, dy) * sin(yaw_);
+      const double dt = (msg->header.stamp - last_odom_->header.stamp).toSec();
+      gyrodom_.pose.pose.position.x += msg->twist.twist.linear.x * dt * cos(yaw_);
+      gyrodom_.pose.pose.position.y += msg->twist.twist.linear.x * dt * sin(yaw_);
     }
     else
     {
