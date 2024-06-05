@@ -25,7 +25,7 @@ public:
    */
   Gyrodometry(void) : private_nh_("~")
   {
-    private_nh_.param<std::string>("child_frame_id", gyrodom_.child_frame_id, "gyrodom");
+    private_nh_.param<std::string>("child_frame_id", gyrodom_.child_frame_id, std::string("gyrodom"));
 
     gyrodom_pub_ = nh_.advertise<nav_msgs::Odometry>("/gyrodom", 1);
     imu_sub_ =
